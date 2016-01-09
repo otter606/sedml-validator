@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-public class SedmlValidatorController {
+public class HelloController {
 	
 	   public static void main(String[] args) throws Exception {
 	        SpringApplication.run(Configuration.class, args);

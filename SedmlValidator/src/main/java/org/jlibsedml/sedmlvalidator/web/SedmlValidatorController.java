@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SedmlValidatorController {
 	
 	   public static void main(String[] args) throws Exception {
-	        SpringApplication.run(SedmlValidatorController.class, args);
+	        SpringApplication.run(Configuration.class, args);
 	    }
 
     @RequestMapping("/")

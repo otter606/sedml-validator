@@ -1,5 +1,5 @@
 #macro (footer)
 <p id="footer">
->@Copyright  Richard Adams 2016
+@Copyright  Richard Adams 2016
 </p>
 #end

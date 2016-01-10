@@ -13,7 +13,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-	baseName = 'gs-spring-boot'
+	baseName = 'sedml-validator'
 	version =  '0.1.0'
 }
 
@@ -38,6 +38,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-velocity")
 	// end::actuator[]
 	testCompile("junit:junit")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {

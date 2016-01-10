@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
  * Servlet implementation class SedmlValidateServlet
  */
 @Controller
-@RequestMapping(value = "/sedml/validate")
+@RequestMapping("/sedml/validate")
 public class SedmlValidationController {
 	private static final long serialVersionUID = 1L;
+	Logger log = LoggerFactory.getLogger(SedmlValidationController.class);
 
 	/**
 	 * @see AbstractSBSIServlet#AbstracSBSIServlet()
@@ -35,7 +38,7 @@ public class SedmlValidationController {
 			HttpServletResponse response, Model model,
 			@RequestParam("xfile") MultipartFile xfile)
 			throws ServletException, IOException {
-
+        log.info("Validating with {}", xfile.getOriginalFilename());
 		try {
 			String output = new SedMLFormatHTMLErrorPageGenerator()
 					.processUploadedFile(xfile);

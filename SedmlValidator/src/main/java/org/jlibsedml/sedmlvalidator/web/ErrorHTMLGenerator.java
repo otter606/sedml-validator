@@ -9,12 +9,12 @@ public class ErrorHTMLGenerator extends TagGeneratorBase{
 	
 	public void showSuccessfulValidation(MultipartFile item,
 			StringBuffer response) throws IOException {
-		response.append(spanOfClass("no_error") +" Syntax OK for " + item.getName()+spanEnd());
+		response.append(spanOfClass("no_error") +" Syntax OK for " + item.getOriginalFilename()+spanEnd());
 	}
 
 	public void getContentForErrorPage(MultipartFile item, StringBuffer response,
 			List<IValidationError> errors, final String [] lines) throws IOException {
-		response.append("<strong><span class=\"error\">Errors found in file: " + item.getName()+  "</span></strong>").append(p());
+		response.append("<strong><span class=\"error\">Errors found in file: " + item.getOriginalFilename()+  "</span></strong>").append(p());
 		for (IValidationError error: errors ){
 			response.append(error.getMessage() + " at line " + error.getLineNumber() + p());
 		}
@@ -48,7 +48,4 @@ public class ErrorHTMLGenerator extends TagGeneratorBase{
 	private String createLineNumber(int lineNo) {
 		return spanOfClass("lineNo") + (lineNo+1) +"." + spanEnd();
 	}
-
-	
-
 }

@@ -30,9 +30,10 @@ dependencies {
 		exclude module: "spring-boot-starter-tomcat"
 	}
 	compile("org.springframework.boot:spring-boot-starter-jetty")
+	compile("org.springframework:spring-webmvc")
 	// end::jetty[]
 	// tag::actuator[]
-	compile("org.springframework.boot:spring-boot-starter-actuator")
+	//compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile ("org.jlibsedml:jlibsedml:2.2.2")
 	compile("org.springframework.boot:spring-boot-starter-velocity")
 	// end::actuator[]

@@ -7,17 +7,18 @@
 <title>Validation result</title>
 </head>
 <body>
-<script language="javascript" type="text/javascript"  src="header.txt"></script>
+
 <h1> Validation result</h1>
 
-<script language="javascript" type="text/javascript"  src="nav.txt"></script>
 <div id="content">
-There was an error running this validation:<br/>
+
+There was an error running this validation<br/>
 <!--  generated from servlet -->
 $content
 
 <!-- end of content section -->
 </div>
+
 #footer
 </body>
 </html>

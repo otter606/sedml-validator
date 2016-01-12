@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.jlibsedml.Libsedml;
 import org.jlibsedml.SEDMLDocument;
 import org.jlibsedml.SedMLError;
@@ -72,11 +73,11 @@ public class SedMLFormatHTMLErrorPageGenerator {
 			for ( StackTraceElement el :e2.getStackTrace())
 				sb2.append(el.toString()).append("\n");
 		   
-			String message=e2.getMessage()+ sb2.toString();
-			if(e2.getMessage().equals("") && e2.getCause()!=null){
-		        if(e2.getCause().getMessage()!=null){
-		        	message= e2.getCause().getMessage();
-		        }
+			String message=e2.getMessage()+" - "+ sb2.toString();
+			if (StringUtils.isEmpty(e2.getMessage()) && e2.getCause() != null) {
+				if (e2.getCause().getMessage() != null) {
+					message = e2.getCause().getMessage();
+				}
 			}
 			parseError = new ParseValidationError(0, message,
 					Severity.ERROR);

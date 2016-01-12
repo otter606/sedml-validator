@@ -1,7 +1,6 @@
 package org.jlibsedml.sedmlvalidator.web;
 
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -31,6 +30,12 @@ public class SedmlValidationController {
 	 */
 	public SedmlValidationController() {
 		super();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getValidationForm(HttpServletRequest request,
+			HttpServletResponse response, Model model) {
+		return "validateForm";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

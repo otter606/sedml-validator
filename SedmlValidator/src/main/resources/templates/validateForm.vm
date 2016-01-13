@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>SED-ML Validator</title>
+<link rel="stylesheet" type="text/css" href="/styles/styles.css">
+<link rel="stylesheet" type="text/css" href="/js/jquery-ui-1.8.14.custom.css">
+<script src="/js/ValidateParserSubmit.js"  language="javascript" 
+    type="text/javascript">
+</script>
+<script src="/js/jquery-1.6.2.js"></script>
+<script src="/js/jquery-ui-1.8.14.custom.min.js"></script>
+</head>
+<body>
+
+<h1>SED-ML  validator </h1>
+
+<script>
+$(function() {
+		$( "input:submit").button();
+	});
+
+</script>
+<div id="content">
+
+<p class="big"> Welcome to this  SED-ML validator. SED-ML is an XML markup language designed to encode the principles of MIASE. <a href="http://www.biomodels.net/miase/">MIASE</a> is a community effort to identify the Minimal Information About a Simulation Experiment.</p>
+<p class="big"> This validator uses a schema derived from <a href="sedml-mathml.xsd">SBML-MathML schema</a>
+and the <a href="sed-ml-L1-V1.xsd">SED-ML L1V1 schema</a> to validate SED-ML files using the 
+<a href="http://jlibsedml.sourceforge.net/jlibsedml/index.html">Jlibsedml</a> library.</p>
+
+This validator uses jlibsedml level 2.2.2, which is developed to conform with the <a href="http://sed-ml.org/">public specification document</a>.
+  
+<p>Please submit  a SED-ML file..</p>
+<form enctype="multipart/form-data" action="/sedml/validate" 
+name="validateFile" method="POST" onsubmit="return check('validateSedML')">
+<input type="file" name="xfile" class="ui-state-default ui-corner-all" id="validateSedML"> <p class="big"/>
+<input type="submit" class="ui-state-default ui-corner-all" value="Validate" >
+</form>
+
+<!-- Alternatively, you can upload  a SED-ML file and view it in HTML:
+<form enctype="multipart/form-data" action="../../Sedml2HTML" 
+name="validateFile" method="POST" onsubmit="return check('displaySedML')">
+<input type="file" class="ui-state-default ui-corner-all" name="inputFile" id="displaySedML"> <p class="big"/>
+<input type="submit" class="ui-state-default ui-corner-all" value="View" >
+</form> -->
+
+</div>
+<img src="/images/logoSedml.png" width=20%/>
+</body>
+</html>

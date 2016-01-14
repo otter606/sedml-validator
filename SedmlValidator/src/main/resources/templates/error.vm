@@ -1,1 +1,23 @@
-There was an error : $!exception
+<!DOCTYPE html> 
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/styles/styles.css">
+</head>
+<body>
+<h1> Something went wrong ... </h1>
+There was an error at  $timestamp, generated from <span class="highlight">$path</span> <br/>
+
+The response code was $status <br/>
+#if ($error)
+The reason was : $error
+#end 
+<div class="content">
+ Details : $message
+</div>
+#if ($trace)
+<div class="stacktrace">
+ $trace
+</div>
+#end
+#footer
+</body>

@@ -34,8 +34,8 @@ public class SedmlValidationController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getValidationForm(HttpServletRequest request,
-			HttpServletResponse response, Model model) {
-		return "validateForm";
+			HttpServletResponse response, Model model) throws IOException {
+			return "validateForm";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

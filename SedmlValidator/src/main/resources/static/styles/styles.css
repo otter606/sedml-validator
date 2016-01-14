@@ -2,6 +2,14 @@ p.big {line-height: 200%;}
 
 
 .error{color: red}
+.align-left {
+	float:left;
+	padding:10px;
+}
+.align-right {
+	float:right;
+	padding:10px;
+}
 
 .no_error{color: green}
 
@@ -20,9 +28,10 @@ span.subtopic{
 /* Basic font for all body*/
 body {
 	 font-family: Arial, sans-serif;
-/*	 background-color: rgb(205,242,242);  */
 	 background-color: white; 
-	 
+	 font-size: 1.2em;
+	 max-width: 960px;
+	 padding:10px;
 	}
 	
 /* Page heading*/
@@ -30,6 +39,10 @@ h1,h3 {
 	color: rgb(18,108,155);
 	background-color: lightgrey;
 	text-align: center;	
+}
+.highlight {
+	background-color: lightgrey;
+}
 }
 
 
@@ -46,9 +59,6 @@ ul {
 	list-style-type:disc;
 	line-height: 150%;
 }
-
-
-
 
 table {
 	 border-collapse:collapse;
@@ -87,13 +97,9 @@ ul.navBar a {
 	}
 /* Id for content <Div>*/
 #content {
-	   margin-left:170px;
-	  
+	   margin-left:170px;	  
 }
 
-#pluginAccordion  {
-	background-color: rgb(205,242,242); 
-}
 
 #content a{
 	   text-decoration:none;
@@ -128,17 +134,6 @@ margin-top:24pt;
 	margin-top: 10px;
 }
 
-/* Id for navigation bar div*/
-#twitter {
-	float: right;
-	width: 250px;
-	margin-top: 10px;
-	background-image: url('twitter.png');
-	height: 288px; 
-	color: rgb(200,200,200);
-}
-
-
  a {
 	  text-decoration:none;
 	  /* font-weight: bold;*/
@@ -152,13 +147,13 @@ margin-top:24pt;
     font-color:teal;
   }
 
-#footer {
+.footer {
 	 clear: both; /* clears floating elements*/
 	 font-style: italic;
 	 font-size: 80%;
 	 border-top: 2px solid black;
 	 width:100%;
-	 
+	 margin-top:20px;	 
 	}
 
 /* Indent standard text*/

@@ -44,21 +44,13 @@ public class SedMLFormatHTMLErrorPageGenerator {
 	TagGeneratorBase tg = new TagGeneratorBase();
 	private IValidationError parseError;
 
-	public String processUploadedFile(MultipartFile item) throws Exception {
+	public ValidationData processUploadedFile(MultipartFile item) throws Exception {
 		// reset
 		parseError = null;
-		TagGeneratorBase tg = new TagGeneratorBase();
-
-		File temp = File.createTempFile("sedmlData", "sedmlData");
-		StringBuffer sb = new StringBuffer();
-		byte[] bytes = item.getBytes();
-	
-	
-		String docAsString= new String(bytes);
-	 
+		byte[] bytes = item.getBytes();	
+		String docAsString = new String(bytes);
 		List<SedMLError> errors = new ArrayList<SedMLError>();
 		SEDMLDocument doc=null;
-		
 		try {
 			if(!Libsedml.isSEDML(new ByteArrayInputStream(bytes))){
 				parseError = new ParseValidationError(0, "File is not SED-ML - the file should be an XML document" +
@@ -85,15 +77,15 @@ public class SedMLFormatHTMLErrorPageGenerator {
 		 catch (NumberFormatException nfe) {
 				parseError = new ParseValidationError(0, "A number format exception was thrown",
 						Severity.ERROR);
-		}catch(Exception e) {
-			
+		}catch(Exception e) {		
 			parseError = new ParseValidationError(0, "An unexpected exception was thrown:[" + e.getMessage() + "], please report this to the SBSI Team."
 					 , Severity.ERROR);
 		}
 		List<IValidationError> adapted = new ArrayList<IValidationError>();
-		ErrorHTMLGenerator gen = new ErrorHTMLGenerator();
+		ValidationData validationData = null;
+		
 		if (errors.isEmpty() && parseError == null) {
-			gen.showSuccessfulValidation(item, sb);
+			return null;
 
 		} else {
 			for (SedMLError error : errors) {
@@ -103,17 +95,39 @@ public class SedMLFormatHTMLErrorPageGenerator {
 				adapted.add(parseError);
 			}
 			String output;
-			if(doc==null || parseError!=null){
-				output=docAsString;
-			}else
+			if(doc == null || parseError != null){
+				output = docAsString;
+			}else {
 				output=doc.writeDocumentToString();
-			gen.getContentForErrorPage(item, sb, adapted, docAsString.split("\\n"));
-
+			}
+			String [] lines = output.split("\n");
+			List<LineData> linedata = new ArrayList<>();
+			for (int lineNo = 0; lineNo <lines.length;lineNo++) {
+				String reformatted = lines[lineNo].replaceAll(">", "&gt;")
+				                                 .replaceAll("<", "&lt;");				
+				if (hasErrorAtLine(adapted ,lineNo)){
+					LineData ld = new LineData(true, reformatted.trim(), lineNo);
+					linedata.add(ld);
+				}
+				else {
+					LineData ld = new LineData(false, reformatted.trim(), lineNo);
+					linedata.add(ld);
+				}
+			}
+			validationData = new ValidationData();
+			validationData.setLineData(linedata);
+			validationData.setErrors(adapted);
+			return validationData;
+		}	
+	}
+	private boolean hasErrorAtLine(List<IValidationError> errors, int lineNo) {
+		for (IValidationError error: errors) {
+			if(error.getLineNumber()-1 == lineNo){
+				return true;
+			}
 		}
-		sb.append(tg.preEnd());
-		temp.delete();
-
-		return sb.toString();
+		return false;
+		
 	}
 
 

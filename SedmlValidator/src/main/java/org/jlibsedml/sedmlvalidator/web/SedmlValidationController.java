@@ -45,9 +45,10 @@ public class SedmlValidationController {
 			throws ServletException, IOException {
         log.info("Validating with {}", xfile.getOriginalFilename());
 		try {
-			String output = new SedMLFormatHTMLErrorPageGenerator()
+			ValidationData validation = new SedMLFormatHTMLErrorPageGenerator()
 					.processUploadedFile(xfile);
-			model.addAttribute("content", output);
+			model.addAttribute("data", validation);
+			model.addAttribute("item", xfile);
 			return "validationResult";
 
 		} catch (Exception e) {

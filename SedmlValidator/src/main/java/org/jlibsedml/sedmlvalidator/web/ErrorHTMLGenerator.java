@@ -9,37 +9,29 @@ public class ErrorHTMLGenerator extends TagGeneratorBase{
 	
 	public void showSuccessfulValidation(MultipartFile item,
 			StringBuffer response) throws IOException {
-		response.append(spanOfClass("no_error") +" Syntax OK for " + item.getOriginalFilename()+spanEnd());
+	//	response.append(spanOfClass("no_error") +" Syntax OK for " + item.getOriginalFilename()+spanEnd());
 	}
 
 	public void getContentForErrorPage(MultipartFile item, StringBuffer response,
 			List<IValidationError> errors, final String [] lines) throws IOException {
-		response.append("<strong><span class=\"error\">Errors found in file: " + item.getOriginalFilename()+  "</span></strong>").append(p());
-		for (IValidationError error: errors ){
-			response.append(error.getMessage() + " at line " + error.getLineNumber() + p());
-		}
-		response.append("Lines with syntax errors are highlighted below:").append(p());
-		response.append(preStart());
-		for (int lineNo = 0; lineNo <lines.length;lineNo++) {
-			String reformatted=lines[lineNo].replaceAll(">", "&gt;")
-			                                 .replaceAll("<", "&lt;");
-			
-			if (hasErrorAtLine(errors ,lineNo)){
-				response.append( createLineNumber(lineNo) + createFormattedError(reformatted)).append("\n");
-			}
-			else
-			  response.append( createLineNumber(lineNo)+ reformatted.trim()).append("\n");
-		}
+	//	response.append("<strong><span class=\"error\">Errors found in file: " + item.getOriginalFilename()+  "</span></strong>").append(p());
+//		for (IValidationError error: errors ){
+//			response.append(error.getMessage() + " at line " + error.getLineNumber() + p());
+//		}
+//		response.append("Lines with syntax errors are highlighted below:").append(p());
+	//	response.append(preStart());
+//		for (int lineNo = 0; lineNo <lines.length;lineNo++) {
+//			String reformatted=lines[lineNo].replaceAll(">", "&gt;")
+//			                                 .replaceAll("<", "&lt;");
+//			
+//			if (hasErrorAtLine(errors ,lineNo)){
+//				response.append( createLineNumber(lineNo) + createFormattedError(reformatted)).append("\n");
+//			}
+//			else
+//			  response.append( createLineNumber(lineNo)+ reformatted.trim()).append("\n");
+//		}
 	}
-	private boolean hasErrorAtLine(List<IValidationError> errors, int lineNo) {
-		for (IValidationError error: errors) {
-			if(error.getLineNumber()-1 == lineNo){
-				return true;
-			}
-		}
-		return false;
-		
-	}
+	
 	
 	private String createFormattedError(String line) {
 		return spanOfClass("error") + line + spanEnd();

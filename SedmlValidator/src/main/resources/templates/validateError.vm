@@ -8,16 +8,9 @@
 <body>
 
 <h1> Validation result</h1>
-
 <div id="content">
 
-There was an error running this validation<br/>
-<!--  generated from servlet -->
-$content
-
-<!-- end of content section -->
 </div>
-
 #footer
 </body>
 </html>

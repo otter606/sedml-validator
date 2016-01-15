@@ -6,12 +6,29 @@
 <title>Validation result</title>
 </head>
 <body>
-
 <h1> Validation result</h1>
-
-
 <div id="content">
-$content
+#if($data)
+  
+  <strong><span class="error">There were validation errors found in file:  $item.originalFilename  </span></strong>
+  <p/>
+  #foreach($error in $data.errors)
+      ${error.severity}:  Line  $error.lineNumber :$error.message 
+      <p/>
+  #end
+  Lines with syntax errors are highlighted below:
+<pre>
+  #foreach($line in $data.lineData)
+     #if($line.error)
+<span class ="lineNo">$line.lineNo</span>.<span class="error">$line.line</span>
+     #else
+<span class ="lineNo">$line.lineNo</span>. $line.line
+     #end
+  #end
+</pre>
+#else
+  <span class="no_error">  Syntax OK for  $item.originalFilename </span>
+#end
 </div>
 #footer
 </body>

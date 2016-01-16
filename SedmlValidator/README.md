@@ -1,12 +1,12 @@
 ## SEDML validator project
 
-This is a Spring Boot webapp to validate SED-ML files.
+This is a Spring Boot webapp to validate [SED-ML](http://sed-ml.org "SED-ML homepage") files.
 
-It requires a Java 8  to run.
+It requires  Java 8  to run.
 
 ### Building and running
 
-You can checkout this project by
+You can checkout this project from
 
     https://github.com/otter606/sedml-validator.git
     
@@ -16,11 +16,9 @@ and build using Gradle wrapper:
     
 Once built, you can run the application (default port 8080) as follows:
 
-    java -jar build/libs/sedml-validator-0.1.0.jar
+    java -jar build/libs/sedml-validator-{VERSION}.jar
     
-(The version may be different in later releases)
 
 You can combine both commands together, e.g.
 
-    ./gradlew build && java -jar build/libs/sedml-validator-0.1.0.jar
-  
+    ./gradlew build && java -jar build/libs/sedml-validator-{VERSION}.jar

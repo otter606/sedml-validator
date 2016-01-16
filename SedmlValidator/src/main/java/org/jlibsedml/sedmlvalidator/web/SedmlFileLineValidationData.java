@@ -1,6 +1,6 @@
 package org.jlibsedml.sedmlvalidator.web;
 
-public class LineData {
+public class SedmlFileLineValidationData {
 	
 	private boolean error;
 	
@@ -8,7 +8,7 @@ public class LineData {
 	
 	private int lineNo;
 
-	public LineData(boolean isError, String line, int lineNo) {
+	public SedmlFileLineValidationData(boolean isError, String line, int lineNo) {
 		super();
 		this.error = isError;
 		this.line = line;

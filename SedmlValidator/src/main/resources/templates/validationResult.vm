@@ -1,4 +1,8 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
+#*
+ General template for validation results, either successful ( no errors)
+ or with validation failures
+*# 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,8 +12,7 @@
 <body>
 <h1> Validation result</h1>
 <div id="content">
-#if($data)
-  
+#if($data)  
   <strong><span class="error">There were validation errors found in file:  $item.originalFilename  </span></strong>
   <p/>
   #foreach($error in $data.errors)

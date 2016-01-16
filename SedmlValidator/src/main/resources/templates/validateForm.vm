@@ -37,12 +37,12 @@ name="validateFile" method="POST" onsubmit="return check('validateSedML')">
 <input type="submit" class="ui-state-default ui-corner-all" value="Validate" >
 </form>
 
-<!-- Alternatively, you can upload  a SED-ML file and view it in HTML:
-<form enctype="multipart/form-data" action="../../Sedml2HTML" 
+Alternatively, you can upload  a SED-ML file and view it in HTML:
+<form enctype="multipart/form-data" action="/sedml/tohtml" 
 name="validateFile" method="POST" onsubmit="return check('displaySedML')">
-<input type="file" class="ui-state-default ui-corner-all" name="inputFile" id="displaySedML"> <p class="big"/>
+<input type="file" class="ui-state-default ui-corner-all" name="xfile" id="displaySedML"> <p class="big"/>
 <input type="submit" class="ui-state-default ui-corner-all" value="View" >
-</form> -->
+</form>
 
 </div>
 #footer

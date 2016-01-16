@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Servlet implementation class SedmlValidateServlet
+ * Controller for validating SED-ML in web UI
  */
 @Controller
 @RequestMapping("/sedml/validate")
@@ -43,7 +43,7 @@ public class SedmlValidationController {
 			HttpServletResponse response, Model model,
 			@RequestParam("xfile") MultipartFile xfile)
 			throws ServletException, IOException {
-        log.info("Validating with {}", xfile.getOriginalFilename());
+        log.info("Validating file {}", xfile.getOriginalFilename());
 		try {
 			ValidationData validation = new SedMLFormatHTMLErrorPageGenerator()
 					.processUploadedFile(xfile);

@@ -41,14 +41,13 @@ public class SedMLFormatHTMLErrorPageGenerator {
 
 	}
 
-	TagGeneratorBase tg = new TagGeneratorBase();
 	private IValidationError parseError;
 
 	public ValidationData processUploadedFile(MultipartFile item) throws Exception {
 		// reset
 		parseError = null;
 		byte[] bytes = item.getBytes();	
-		String docAsString = new String(bytes);
+		String docAsString = new String(bytes,"UTF-8");
 		List<SedMLError> errors = new ArrayList<SedMLError>();
 		SEDMLDocument doc=null;
 		try {
@@ -101,16 +100,16 @@ public class SedMLFormatHTMLErrorPageGenerator {
 				output=doc.writeDocumentToString();
 			}
 			String [] lines = output.split("\n");
-			List<LineData> linedata = new ArrayList<>();
+			List<SedmlFileLineValidationData> linedata = new ArrayList<>();
 			for (int lineNo = 0; lineNo <lines.length;lineNo++) {
 				String reformatted = lines[lineNo].replaceAll(">", "&gt;")
 				                                 .replaceAll("<", "&lt;");				
 				if (hasErrorAtLine(adapted ,lineNo)){
-					LineData ld = new LineData(true, reformatted.trim(), lineNo);
+					SedmlFileLineValidationData ld = new SedmlFileLineValidationData(true, reformatted.trim(), lineNo + 1);
 					linedata.add(ld);
 				}
 				else {
-					LineData ld = new LineData(false, reformatted.trim(), lineNo);
+					SedmlFileLineValidationData ld = new SedmlFileLineValidationData(false, reformatted.trim(), lineNo +1);
 					linedata.add(ld);
 				}
 			}

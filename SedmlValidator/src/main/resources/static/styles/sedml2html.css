@@ -1,0 +1,80 @@
+body {
+	background-color: #D5EDEC;
+	font-family: Georgia, serif;
+	font-size: 10pt;
+}
+
+.small {
+	font-size: 10pt;
+}
+
+h2,h3 {
+	color: navy;
+}
+
+table {
+	border: 1;
+	padding: 5px;
+	border-collapse: collapse;
+	width: 400;
+}
+
+th,td {
+	border: 1px solid black;
+	padding: 5px;
+	text-align: center;
+	font-size: 10pt;
+	width: 20%;
+}
+
+td.noborder {
+	border: none;
+}
+
+.tblColTitle {
+	background-color: #9acd32;
+}
+
+p.centred {
+	text-align: center;
+	font-size: 10pt;
+}
+
+.bold {
+	font-weight: bold;
+	color: navy;
+}
+
+.hotspot {
+	color: #900;
+	padding-bottom: 1px;
+	border-bottom: 1px dotted #900;
+	cursor: pointer
+}
+
+#tt {
+	position: absolute;
+	display: block;
+}
+
+#tttop {
+	display: block;
+	height: 5px;
+	margin-left: 5px;
+	overflow: hidden
+}
+
+#ttcont {
+	display: block;
+	padding: 2px 12px 3px 7px;
+	margin-left: 5px;
+	background: #666;
+	color: #FFF
+}
+
+#ttbot {
+	display: block;
+	height: 5px;
+	margin-left: 5px;
+	overflow: hidden
+}

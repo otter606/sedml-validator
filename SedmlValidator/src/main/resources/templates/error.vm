@@ -1,4 +1,7 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
+#* 
+General default error page.
+*# 
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/styles/styles.css">

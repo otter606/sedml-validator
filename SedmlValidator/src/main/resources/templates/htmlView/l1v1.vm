@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="/styles/styles.css">
+<title>$item.originalFilename view</title>
+</head>
+<body>
+<h1> $item.originalFilename</h1>
+<div id="content">
+<p>This is an HTML view of the SEDML file $item.originalFilename </p>
+<p> This file is level $sedml.level, version $sedml.version
+<h3> List of Models </h3>
+#foreach($model in $sedml.models)
+<h4>  <a name="$model.id"/> $model.name</h4>
+<table>
+<tr class="tblColTitle">
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>Name</td>
+<td>$model.name</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>
+#if ($model.source.startsWith("html"))
+ <a href ="$model.source">$model.source</a>
+#elseif ($model.source.startsWith("urn:miriam:biomodels.db:"))
+ #set($ebi = 'http://www.ebi.ac.uk/biomodels-main/')
+ #set ($suffix = $model.source.substring(25))
+ <a href ="${ebi}${suffix}">$model.source</a>
+#else 
+$model.source
+#end
+</td>
+</tr>
+</table>
+#end
+
+
+<h3> List of Simulations </h3>
+
+</div>
+#footer
+</body>
+</html>

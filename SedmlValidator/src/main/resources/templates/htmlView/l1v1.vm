@@ -48,16 +48,50 @@
      #foreach ($change in $model.listOfChanges)   
        <div class="row">
         <div class="one column label">Type</div>
-        <div class="three columns">$change.changeKind</div>
+        <div class="two columns">$change.changeKind</div>
         <div class="one column label">Target</div>
-        <div class="three columns">$change.targetXPath</div>
-        <div class="one column label">New value</div>
-        <div class="three columns">$change.newValue</div>
+        <div class="four columns">
+             <span class="dont-break-out">$change.targetXPath</span>
+        </div>
+        #if($change.changeKind == 'ChangeAttribute')
+           <div class="one column label">New value</div>
+           <div class="three columns">$change.newValue</div>
+        #elseif ($change.changeKind == 'AddXML')
+            <div class="one column label">New value</div>
+            <div class="three columns">
+               #foreach($element in $change.newXML.xml)
+                  $element
+               #end
+            </div>
+        #elseif ($change.changeKind == 'RemoveXML')
+            <div class="four columns"></div>
+        #elseif ($change.changeKind == 'ComputeChange')
+            <div class="one column label">Math</div>
+            <div class="three columns">
+              $mathToString.formulaToString($change.math)
+            </div>
+        #end
        </div> 
-     #end
-  #end
+     #end ## of changes
+  #end ## of if changes
+#end ## of models
+<div class="row">
+<h3> List of Simulations </h3>
+</div>
+#foreach ($simulation in $sedml.simulations)
+ <div class ="row">
+   <div class ="one column label">Name</div>
+   <div class ="two columns">$!simulation.name</div>
+   <div class ="one column label">Start time</div>
+   <div class ="one column">$simulation.initialTime</div>
+   <div class ="one column label">Output start</div>
+   <div class ="one column">$simulation.outputStartTime</div>
+   <div class ="one column label">Output end</div>
+   <div class ="one column">$simulation.outputEndTime</div>
+   <div class ="one column label">Number of data points</div>
+   <div class ="two columns">$simulation.numberOfPoints</div>
+ </div>
 #end
-##<h3> List of Simulations </h3>
 
 </div>
 #footer

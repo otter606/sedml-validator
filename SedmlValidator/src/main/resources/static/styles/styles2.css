@@ -1,15 +1,19 @@
 /* Page heading*/
+
+div.row {
+	border: 1px solid blue
+}
+
 h1,h2,h3 {
 	color: rgb(18,108,155);
 	background-color: lightgrey;
-	text-align: center;	
 }
 .highlight {
 	background-color: lightgrey;
 }
 
 .error {
-	 color: red
+	color: red
 }
 
 .footer {
@@ -34,7 +38,6 @@ h1,h2,h3 {
 }
 	
 .dont-break-out {
-
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -50,5 +53,4 @@ h1,h2,h3 {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-
 }

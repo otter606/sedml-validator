@@ -2,45 +2,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="/styles/styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/normalize.css">
+<link rel="stylesheet" type="text/css" href="/styles/skeleton.css">
+<link rel="stylesheet" type="text/css" href="/styles/styles2.css">
 <title>$item.originalFilename view</title>
 </head>
 <body>
 <h1> $item.originalFilename</h1>
-<div id="content">
+<div class ="container">
+<div class="row">
 <p>This is an HTML view of the SEDML file $item.originalFilename </p>
 <p> This file is level $sedml.level, version $sedml.version
 <h3> List of Models </h3>
+
+</div>
 #foreach($model in $sedml.models)
-<h4>  <a name="$model.id"/> $model.name</h4>
-<table>
-<tr class="tblColTitle">
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-<tr>
-<td>Name</td>
-<td>$model.name</td>
-</tr>
-<tr>
-<td>Source</td>
-<td>
-#if ($model.source.startsWith("html"))
- <a href ="$model.source">$model.source</a>
-#elseif ($model.source.startsWith("urn:miriam:biomodels.db:"))
- #set($ebi = 'http://www.ebi.ac.uk/biomodels-main/')
- #set ($suffix = $model.source.substring(25))
- <a href ="${ebi}${suffix}">$model.source</a>
-#else 
-$model.source
+<div class="row">
+<h5>  <a name="$model.id"/> $model.name</a></h5>
+</div>
+<div class="row">
+  <div class ="one column label">
+    Source:
+  </div>
+  <div class = "five columns">
+  #if ($model.source.startsWith("html"))
+    <a href ="$model.source" target="_blank">$model.source</a>
+  #elseif ($model.source.startsWith("urn:miriam:biomodels.db:"))
+    #set ($ebi = 'http://www.ebi.ac.uk/biomodels-main/')
+    #set ($suffix = $model.source.substring(24))
+     <span class="dont-break-out">
+      <a href ="${ebi}${suffix}" target="_blank">$model.source</a></span>
+  #else 
+     $model.source
+  #end
+  </div>
+  <div class ="one column label">
+   Language 
+  </div> 
+  <div class = "five columns">
+   <span class="dont-break-out">$model.language </span>
+   </div>
+</div>
+  #if ($model.hasChanges())
+     <div class="row"> <h6>Changes</h6></div>
+     #foreach ($change in $model.listOfChanges)   
+       <div class="row">
+        <div class="one column label">Type</div>
+        <div class="three columns">$change.changeKind</div>
+        <div class="one column label">Target</div>
+        <div class="three columns">$change.targetXPath</div>
+        <div class="one column label">New value</div>
+        <div class="three columns">$change.newValue</div>
+       </div> 
+     #end
+  #end
 #end
-</td>
-</tr>
-</table>
-#end
-
-
-<h3> List of Simulations </h3>
+##<h3> List of Simulations </h3>
 
 </div>
 #footer

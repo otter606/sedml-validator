@@ -46,6 +46,7 @@ public class Sedml2HtmlController {
 			doc = Libsedml.readDocumentFromString(docAsString);
 			model.addAttribute("item", xfile);
 			model.addAttribute("sedml", doc.getSedMLModel());
+			model.addAttribute("libsedml", Libsedml.class);// for static methods
 			return "htmlView/l1v1";
 
 		} catch (Exception e) {

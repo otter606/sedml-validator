@@ -629,10 +629,7 @@
 										<td>
 											<xsl:value-of select="@newValue"></xsl:value-of>
 										</td>
-
 									</tr>
-
-
 								</xsl:for-each>
 							</table>
 						</xsl:if>

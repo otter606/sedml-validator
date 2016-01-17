@@ -1,7 +1,5 @@
 p.big {line-height: 200%;}
 
-
-.error{color: red}
 .align-left {
 	float:left;
 	padding:10px;
@@ -14,6 +12,8 @@ p.big {line-height: 200%;}
 .no_error{color: green}
 
 span.lineNo{color: blue;}
+
+.error{color: red}
 
 span.subtopic{
 	font-size:120%;
@@ -35,7 +35,7 @@ body {
 	}
 	
 /* Page heading*/
-h1,h3 {
+h1,h2,h3 {
 	color: rgb(18,108,155);
 	background-color: lightgrey;
 	text-align: center;	
@@ -43,15 +43,7 @@ h1,h3 {
 .highlight {
 	background-color: lightgrey;
 }
-}
 
-
-
-h2 {
-	color: rgb(18,108,155);
-	background-color: lightgrey;
-	text-align: left;	
-}
 
 
 /*Unordered list*/

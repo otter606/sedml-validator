@@ -81,7 +81,7 @@
 #foreach ($simulation in $sedml.simulations)
  <div class ="row">
    <div class ="one column label">Name</div>
-   <div class ="two columns">$!simulation.name</div>
+   <div class ="two columns"><a name="$simulation.id">$!simulation.name</a></div>
    <div class ="one column label">Start time</div>
    <div class ="one column">$simulation.initialTime</div>
    <div class ="one column label">Output start</div>
@@ -90,6 +90,50 @@
    <div class ="one column">$simulation.outputEndTime</div>
    <div class ="one column label">Number of data points</div>
    <div class ="two columns">$simulation.numberOfPoints</div>
+ </div>
+#end
+<div class="row">
+<h3> List of Tasks </h3>
+</div>
+<div class="row">
+   <div class ="four columns label">Name</div>
+   <div class ="four columns label">Model reference</div>
+   <div class ="four columns label">Simulation reference</div>
+</div>
+#foreach ($task in $sedml.tasks)
+ <div class ="row">
+   <div class ="four columns">$!task.name</div>
+   <div class ="four columns"><a href="#$task.modelReference">$task.modelReference</a></div>
+   <div class ="four columns"><a href="#$task.simulationReference">$task.simulationReference</a></div>
+ </div>
+#end
+<div>
+<h3> List of DataGenerators </h3>
+</div>
+<div class ="row">
+<div class ="two columns label">Name</div>
+<div class ="six columns label">Variables</div>
+  <div class="four columns label">Math</div>
+</div>
+#foreach ($dg in $sedml.dataGenerators)
+
+ <div class ="row">
+   
+   <div class ="two columns"><a name ="$dg.id">$!dg.name</a></div>
+   <div class ="six columns"> 
+    #foreach ($var in $dg.listOfVariables)
+      $var.reference 
+      #if($var.symbol)
+        ($var.symbol) <br/>
+      #else 
+      <span class="dont-break-out">($var.getTarget())</span> <br/>
+      #end
+    #end
+   </div>
+ 
+        <div class="four columns">
+             <span class="dont-break-out"> $mathToString.formulaToString($dg.math)</span>
+        </div>
  </div>
 #end
 

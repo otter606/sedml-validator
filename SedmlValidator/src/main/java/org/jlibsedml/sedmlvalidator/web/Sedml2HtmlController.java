@@ -47,7 +47,7 @@ public class Sedml2HtmlController {
 			doc = Libsedml.readDocumentFromString(docAsString);
 			model.addAttribute("item", xfile);
 			model.addAttribute("sedml", doc.getSedMLModel());
-			model.addAttribute("mathToString", FormulaFormatter.class);// for static methods
+			model.addAttribute("mathToString", new FormulaFormatter());// for static methods
 			return "htmlView/l1v1";
 
 		} catch (Exception e) {

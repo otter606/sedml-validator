@@ -420,7 +420,6 @@
 								<th>Model reference (task)</th>
 							</tr>
 							<xsl:apply-templates select="sed:listOfVariables" />
-
 						</table>
 					</td>
 					<td>

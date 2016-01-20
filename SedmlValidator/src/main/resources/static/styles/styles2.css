@@ -1,9 +1,5 @@
 /* Page heading*/
 
-div.row {
-	border: 1px solid blue
-}
-
 h1,h2,h3 {
 	color: rgb(18,108,155);
 	background-color: lightgrey;
@@ -35,6 +31,14 @@ h1,h2,h3 {
 
 .label {
 	font-weight: 800;
+}
+
+.section {
+	border: 2px solid blue;
+	border-radius:5px;
+	padding-left:10px;
+	padding-top:5px;
+	margin-top:10px;
 }
 	
 .dont-break-out {

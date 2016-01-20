@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
  * Controller for validating SED-ML in web UI
  */
 @Controller
-@RequestMapping("/sedml/validate")
+
 public class SedmlValidationController {
 	private static final long serialVersionUID = 1L;
 	Logger log = LoggerFactory.getLogger(SedmlValidationController.class);
@@ -32,13 +32,13 @@ public class SedmlValidationController {
 		super();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value={"/","/sedml/validate"})
 	public String getValidationForm(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws IOException {
 			return "validateForm";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/sedml/validate",method = RequestMethod.POST)
 	public String validate(HttpServletRequest request,
 			HttpServletResponse response, Model model,
 			@RequestParam("xfile") MultipartFile xfile)

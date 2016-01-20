@@ -8,8 +8,9 @@
 <title>$item.originalFilename view</title>
 </head>
 <body>
-<h1> $item.originalFilename</h1>
+
 <div class ="container">
+<h1> $item.originalFilename</h1>
 <div class="row">
 <p>This is an HTML view of the SEDML file $item.originalFilename </p>
 <p> This file is level $sedml.level, version $sedml.version
@@ -113,7 +114,7 @@
 <div class ="row">
 <div class ="two columns label">Name</div>
 <div class ="six columns label">Variables</div>
-  <div class="four columns label">Math</div>
+ <div class="four columns label">Math</div>
 </div>
 #foreach ($dg in $sedml.dataGenerators)
 

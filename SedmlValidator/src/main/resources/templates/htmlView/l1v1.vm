@@ -12,9 +12,9 @@
 <div class ="container">
 <h1> $item.originalFilename</h1>
 <div class="row">
-<p>This is an HTML view of the SEDML file $item.originalFilename </p>
-<p> This file is level $sedml.level, version $sedml.version
-<h3> List of Models </h3>
+<p>This is an HTML view of the SEDML file $item.originalFilename <br/>
+This file is level $sedml.level, version $sedml.version
+<h3>Models </h3>
 
 </div>
 #foreach($model in $sedml.models)
@@ -77,7 +77,7 @@
   #end ## of if changes
 #end ## of models
 <div class="row">
-<h3> List of Simulations </h3>
+<h3> Simulations </h3>
 </div>
 #foreach ($simulation in $sedml.simulations)
  <div class ="row">
@@ -94,7 +94,7 @@
  </div>
 #end
 <div class="row">
-<h3> List of Tasks </h3>
+<h3> Tasks </h3>
 </div>
 <div class="row">
    <div class ="four columns label">Name</div>
@@ -109,7 +109,7 @@
  </div>
 #end
 <div>
-<h3> List of DataGenerators </h3>
+<h3>  DataGenerators </h3>
 </div>
 <div class ="row">
 <div class ="two columns label">Name</div>
@@ -117,9 +117,7 @@
  <div class="four columns label">Math</div>
 </div>
 #foreach ($dg in $sedml.dataGenerators)
-
- <div class ="row">
-   
+ <div class ="row" style="border-bottom: 1px dotted blue">   
    <div class ="two columns"><a name ="$dg.id">$!dg.name</a></div>
    <div class ="six columns"> 
     #foreach ($var in $dg.listOfVariables)
@@ -131,12 +129,52 @@
       #end
     #end
    </div>
- 
-        <div class="four columns">
-             <span class="dont-break-out"> $mathToString.formulaToString($dg.math)</span>
-        </div>
+    <div class="four columns">
+       <span class="dont-break-out"> $mathToString.formulaToString($dg.math)</span>
+     </div>
  </div>
 #end
+<div>
+<h3> Outputs </h3>
+</div>
+<div class ="row">
+  <div class ="two columns label">Name</div>
+  <div class ="ten columns label">Outputs</div>
+</div>
+#foreach ($output in $sedml.outputs)
+ <div class ="row" style="border-bottom: 1px dotted blue">
+   <div class = "two columns label">$output.getKind() - $output.name</div>
+   <div class = "ten columns">
+    #if ($output.getKind() == "Plot2D")
+      <table>
+      <thead>
+      <th>x</th><th>y</th>
+      </thead>
+      <tbody>
+      #foreach ($curve in $output.listOfCurves)
+         <tr>
+         <td><a href="#$curve.xDataReference">$sedml.getDataGeneratorWithId($curve.xDataReference).name</a></td> 
+         <td><a href="#$curve.yDataReference">$sedml.getDataGeneratorWithId($curve.yDataReference).name</a></td>
+         </tr>
+      #end 
+      </tbody>
+      </table>
+    #elseif ($output.getKind() == "Plot3d")
+      #foreach ($surface in $output.listOfSurfaces)
+         x: <a href="#$surface.xDataReference">$sedml.getDataGeneratorWithId($surface.xDataReference).name</a>, 
+         y: <a href="#$surface.yDataReference">$sedml.getDataGeneratorWithId($surface.yDataReference).name</a>
+         z: <a href="#$surface.zDataReference">$sedml.getDataGeneratorWithId($surface.zDataReference).name</a>
+        <br/>
+      #end 
+    #elseif ($output.getKind() == "Report")
+       #foreach ($ds in $output.listOfDataSets)
+         dataset: <a href="#$ds.dataReference">$sedml.getDataGeneratorWithId($ds.dataReference).name</a>, 
+      #end 
+    #end
+    </div>
+  </div>
+#end
+ 
 
 </div>
 #footer

@@ -22,12 +22,13 @@ $(function() {
 <body>
 <div class= "container">
   <div class="row">
-<h1>SED-ML  validator </h1>
+<h1>SED-ML  tools </h1>
 </div>
 
 <div class="row">
 
-<p class="big"> Welcome to this  SED-ML validator. SED-ML is an XML markup language designed to encode the principles of MIASE. <a href="http://www.biomodels.net/miase/">MIASE</a> is a community effort to identify the Minimal Information About a Simulation Experiment.</p>
+<p class="big"> Welcome to this  SED-ML validator and viewer. SED-ML is an XML markup language designed to encode the principles of MIASE. 
+<a href="http://www.biomodels.net/miase/">MIASE</a> is a community effort to identify the Minimal Information About a Simulation Experiment.</p>
 <p class="big"> This validator uses a schema derived from <a href="/sedml-mathml.xsd">SBML-MathML schema</a>
 and the <a href="/sed-ml-L1-V1.xsd">SED-ML L1V1 schema</a> to validate SED-ML files using the 
 <a href="http://jlibsedml.sourceforge.net/jlibsedml/index.html">Jlibsedml</a> library.</p>

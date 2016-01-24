@@ -45,13 +45,11 @@ public class Sedml2HtmlController {
 			SEDMLDocument doc = null;
 
 			doc = Libsedml.readDocumentFromString(docAsString);
-	
-			
+		
 			model.addAttribute("item", xfile);
 			model.addAttribute("sedml", doc.getSedMLModel());
 			model.addAttribute("mathToString", new FormulaFormatter());// for static methods
-			model.addAttribute("notesWriter", new XMLOutputter());
-			
+			model.addAttribute("notesWriter", new XMLOutputter());		
 			return "htmlView/l1v1";
 
 		} catch (Exception e) {

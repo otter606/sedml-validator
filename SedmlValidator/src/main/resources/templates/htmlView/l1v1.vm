@@ -14,12 +14,15 @@
 <div class="row">
 <p>This is an HTML view of the SEDML file $item.originalFilename <br/>
 This file is level $sedml.level, version $sedml.version
+#notes($sedml)
+
 <h3>Models </h3>
 
 </div>
 #foreach($model in $sedml.models)
 <div class="row">
 <h5>  <a name="$model.id"/> $model.name</a></h5>
+#notes($model)
 </div>
 <div class="row">
   <div class ="one column label">
@@ -45,8 +48,10 @@ This file is level $sedml.level, version $sedml.version
    </div>
 </div>
   #if ($model.hasChanges())
-     <div class="row"> <h6>Changes</h6></div>
-     #foreach ($change in $model.listOfChanges)   
+     <div class="row"> <h6>Changes</h6>
+     </div>
+     #foreach ($change in $model.listOfChanges) 
+        #notes($change)  
        <div class="row">
         <div class="one column label">Type</div>
         <div class="two columns">$change.changeKind</div>
@@ -80,6 +85,7 @@ This file is level $sedml.level, version $sedml.version
 <h3> Simulations </h3>
 </div>
 #foreach ($simulation in $sedml.simulations)
+ #notes($simulation) 
  <div class ="row">
    <div class ="one column label">Name</div>
    <div class ="two columns"><a name="$simulation.id">$!simulation.name</a></div>
@@ -102,6 +108,7 @@ This file is level $sedml.level, version $sedml.version
    <div class ="four columns label">Simulation reference</div>
 </div>
 #foreach ($task in $sedml.tasks)
+  #notes($task) 
  <div class ="row">
    <div class ="four columns">$!task.name</div>
    <div class ="four columns"><a href="#$task.modelReference">$task.modelReference</a></div>
@@ -117,6 +124,7 @@ This file is level $sedml.level, version $sedml.version
  <div class="four columns label">Math</div>
 </div>
 #foreach ($dg in $sedml.dataGenerators)
+  #notes($dg) 
  <div class ="row" style="border-bottom: 1px dotted blue">   
    <div class ="two columns"><a name ="$dg.id">$!dg.name</a></div>
    <div class ="six columns"> 
@@ -142,6 +150,7 @@ This file is level $sedml.level, version $sedml.version
   <div class ="ten columns label">Outputs</div>
 </div>
 #foreach ($output in $sedml.outputs)
+   #notes($output) 
  <div class ="row" style="border-bottom: 1px dotted blue">
    <div class = "two columns label">$output.getKind() - $output.name</div>
    <div class = "ten columns">

@@ -1,6 +1,5 @@
 package org.jlibsedml.sedmlvalidator.web;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jdom.Element;
+import org.jdom.output.XMLOutputter;
 import org.jlibsedml.Libsedml;
 import org.jlibsedml.SEDMLDocument;
 import org.jlibsedml.SedMLError;
-import org.jlibsedml.sedmlvalidator.web.SedMLFormatHTMLErrorPageGenerator.ParseValidationError;
 import org.jmathml.FormulaFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class Sedml2HtmlController {
 	// private static final long serialVersionUID = 1L;
 	Logger log = LoggerFactory.getLogger(Sedml2HtmlController.class);
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping (method = RequestMethod.POST)
 	public String toHTML(HttpServletRequest request,
 			HttpServletResponse response, Model model,
 			@RequestParam("xfile") MultipartFile xfile)
@@ -45,9 +45,13 @@ public class Sedml2HtmlController {
 			SEDMLDocument doc = null;
 
 			doc = Libsedml.readDocumentFromString(docAsString);
+	
+			
 			model.addAttribute("item", xfile);
 			model.addAttribute("sedml", doc.getSedMLModel());
 			model.addAttribute("mathToString", new FormulaFormatter());// for static methods
+			model.addAttribute("notesWriter", new XMLOutputter());
+			
 			return "htmlView/l1v1";
 
 		} catch (Exception e) {

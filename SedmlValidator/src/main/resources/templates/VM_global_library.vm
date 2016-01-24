@@ -7,8 +7,12 @@
   Version 0.2.0 
   </div>
   <img src="/images/logoSedml.png" style="display:block; margin: 0 auto" width=20% />
-  
-  <div style="clear:both"/>
-  
+  <div style="clear:both"/> 
 </div>
+#end
+
+#macro (notes, $sedbase, $notesWriter)
+  #foreach ($note in $sedbase.getNotes() )
+       $notesWriter.outputString($note.notesElement)
+  #end
 #end

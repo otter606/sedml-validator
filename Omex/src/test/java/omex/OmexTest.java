@@ -1,6 +1,6 @@
 package omex;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +18,6 @@ import org.jlibsedml.SEDMLDocument;
 import org.jlibsedml.XMLException;
 import org.junit.Test;
 
-import de.unirostock.sems.cbarchive.ArchiveEntry;
-import de.unirostock.sems.cbarchive.CombineArchive;
-import de.unirostock.sems.cbarchive.CombineArchiveException;
-import de.unirostock.sems.cbarchive.meta.OmexMetaDataObject;
-import de.unirostock.sems.cbarchive.meta.omex.OmexDescription;
 import de.unirostock.sems.cbext.Formatizer;
 
 public class OmexTest {

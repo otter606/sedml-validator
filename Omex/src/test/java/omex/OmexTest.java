@@ -18,6 +18,11 @@ import org.jlibsedml.SEDMLDocument;
 import org.jlibsedml.XMLException;
 import org.junit.Test;
 
+import de.unirostock.sems.cbarchive.ArchiveEntry;
+import de.unirostock.sems.cbarchive.CombineArchive;
+import de.unirostock.sems.cbarchive.CombineArchiveException;
+import de.unirostock.sems.cbarchive.meta.OmexMetaDataObject;
+import de.unirostock.sems.cbarchive.meta.omex.OmexDescription;
 import de.unirostock.sems.cbext.Formatizer;
 
 public class OmexTest {
@@ -25,8 +30,6 @@ public class OmexTest {
 	static final File SEDML_FILE = new File ("src/test/resources/sedMLBIOM12.sed-ml");
 	static final File REPRESSILATOR = new File ("src/test/resources/Elowitz2000_Repressilator.sbml");
 
-
-	
 	@Test
 	public void createSEDMLArchive () throws XMLException, IOException, URISyntaxException, JDOMException, ParseException, CombineArchiveException, TransformerException{
 	
@@ -74,9 +77,10 @@ public class OmexTest {
 		// now let's read it in and check there's a SEDML file
 		assertEquals(2, archiveIn.getNumEntries());
 		assertEquals(1, archiveIn.getEntriesWithFormat(sedmlformat).size());
+		// and an SBML file.
 		assertEquals(1, archiveIn.getEntriesWithFormat(modelformat).size());
 		
-		// now let's discover the
+		// now let's discover the models
 		if (ca.hasEntriesWithFormat(sedmlformat)){
 			for (ArchiveEntry entry : archiveIn.getEntriesWithFormat(sedmlformat)) {
 				File sedmlFile = entry.extractFile(File.createTempFile("sedmlFromOmex", ".xml"));
@@ -85,6 +89,7 @@ public class OmexTest {
 				// now we need to look up the source
 			}
 		}
+		archiveIn.close();
 	}
 
 	// puts model files in  a specific location

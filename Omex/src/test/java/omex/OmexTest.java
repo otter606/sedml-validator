@@ -90,6 +90,7 @@ public class OmexTest {
 			}
 		}
 		archiveIn.close();
+		
 	}
 
 	// puts model files in  a specific location

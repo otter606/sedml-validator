@@ -5,21 +5,16 @@ repositories {
 	maven { url "https://oss.sonatype.org/content/repositories/releases/"}
 	maven { url "http://mvn.sems.uni-rostock.de/releases/" }	
 	maven { url "http://mvn.sems.uni-rostock.de/snapshots/" }
-//	maven {url 'http://www.ebi.ac.uk/~maven/m2repo'}
+	maven { url "./repo"}
 }
 
 dependencies {
     compile group: 'de.unirostock.sems', name: 'CombineArchive', version:'1.1.1'
 	compile group: 'org.jlibsedml', name: 'jlibsedml', version:'2.2.2'
-	
+	compile 'org.sbml:jsimulator-core:1.4'
+	compile 'org.apache.commons:commons-math:2.2'
 	compile group: 'de.unirostock.sems', name: 'CombineExt', version:'1.2.3'
 	testCompile group: 'junit', name: 'junit', version:'4.12'
-//	compile group: 'org.jlibsedml', name: 'org.jlibsedml', version:'2.2.2'	
-//	compile ('org.sbml.jsbml:jsbml:1.1'){
-//		exclude group:'org.sbolstandard'
-//		exclude group:'org.biojava'
-//		
-//	}
       
 }
 

@@ -2,22 +2,17 @@ apply plugin: 'java'
 repositories {
 	mavenCentral()
 	mavenLocal()
-	maven { url "https://oss.sonatype.org/content/repositories/releases/"}
 	maven { url "http://mvn.sems.uni-rostock.de/releases/" }	
 	maven { url "http://mvn.sems.uni-rostock.de/snapshots/" }
+	// local repo for dependencies not in maven (jsimulator core)
 	maven { url "./repo"}
 }
 
 dependencies {
-    compile group: 'de.unirostock.sems', name: 'CombineArchive', version:'1.1.1'
-	compile group: 'org.jlibsedml', name: 'jlibsedml', version:'2.2.2'
+    compile 'de.unirostock.sems:CombineArchive:1.1.1'
+	compile 'de.unirostock.sems:CombineExt:1.2.3'
+	compile 'org.jlibsedml:org.jlibsedml:2.2.3-SNAPSHOT'
 	compile 'org.sbml:jsimulator-core:1.4'
 	compile 'org.apache.commons:commons-math:2.2'
-	compile group: 'de.unirostock.sems', name: 'CombineExt', version:'1.2.3'
-	testCompile group: 'junit', name: 'junit', version:'4.12'
-      
+	testCompile 'junit:junit:4.12'
 }
-
-task showMeCache << {
-	configurations.compile.each { println it }
- }

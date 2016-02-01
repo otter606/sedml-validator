@@ -1,5 +1,7 @@
 package omex;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -19,13 +21,13 @@ import org.simulator.sbml.SBMLinterpreter;
 public class SbmlsimulatorTest {
     File sbml = new File ("src/test/resources/Elowitz2000_Repressilator.sbml");
 	@Test
-	public void test() throws XMLStreamException, IOException, DerivativeException, SBMLException, ModelOverdeterminedException {
-		Model model = (new SBMLReader()).readSBML(sbml).getModel();
+	public void basicHappyTestCase() throws XMLStreamException, IOException, DerivativeException, SBMLException, ModelOverdeterminedException {
+		Model model = new SBMLReader().readSBML(sbml).getModel();
 		SBMLinterpreter interpreter = new SBMLinterpreter(model); 
 		AbstractDESSolver solver = new RosenbrockSolver();
 		double[] timePoints = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5};
 		MultiTable solution = solver.solve(interpreter, interpreter.getInitialValues(), timePoints); 
-		System.err.println("There are " + solution.getColumnCount() + "columns");
+		assertEquals("Unexpected number of columns", 36, solution.getColumnCount());
 	}
 
 }

@@ -34,7 +34,7 @@
     </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" name="Repressilator-regular oscillations" language="urn:sedml:language:sbml.level-2.version-3" source="models/Elowitz2000_Repressilator.sbml">
+    <model id="model1" name="Repressilator-regular oscillations" language="urn:sedml:language:sbml.level-2.version-3" source="/models/Elowitz2000_Repressilator.sbml">
       <notes>
         <p xmlns="http://www.w3.org/1999/xhtml">
           This is the

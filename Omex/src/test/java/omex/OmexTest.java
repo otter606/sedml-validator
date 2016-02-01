@@ -14,9 +14,17 @@ import javax.xml.transform.TransformerException;
 import org.jdom2.JDOMException;
 import org.jlibsedml.Libsedml;
 import org.jlibsedml.Model;
+import org.jlibsedml.Output;
 import org.jlibsedml.SEDMLDocument;
+import org.jlibsedml.SedML;
 import org.jlibsedml.XMLException;
+import org.jlibsedml.execution.FileModelResolver;
+import org.jlibsedml.execution.IModelResolver;
+import org.jlibsedml.execution.ModelResolver;
+import org.jlibsedml.modelsupport.BioModelsModelsRetriever;
+import org.jlibsedml.modelsupport.URLResourceRetriever;
 import org.junit.Test;
+import org.simulator.sedml.SedMLSBMLSimulatorExecutor;
 
 import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
@@ -59,12 +67,12 @@ public class OmexTest {
 		ca.addEntry(
 				   REPRESSILATOR,
 				   getModelPathInArchive(),
-				   sedmlformat);
+				   modelformat);
 		// add SED-ML file
 		ArchiveEntry sedFile = ca.addEntry(
 				   SEDML_FILE,
 				   SEDML_FILE.getName(),
-				   modelformat);
+				   sedmlformat);
 		// add a description
 		OmexDescription desc = new OmexDescription("test description");
 		OmexMetaDataObject dmo = new OmexMetaDataObject(desc);
@@ -85,8 +93,26 @@ public class OmexTest {
 			for (ArchiveEntry entry : archiveIn.getEntriesWithFormat(sedmlformat)) {
 				File sedmlFile = entry.extractFile(File.createTempFile("sedmlFromOmex", ".xml"));
 				SEDMLDocument sedmlIn = Libsedml.readDocument(sedmlFile);
-				List<Model> models = sedmlIn.getSedMLModel().getModels();
-				// now we need to look up the source
+				SedML sedml = sedmlIn.getSedMLModel();
+				
+				ModelResolver resolver = new ModelResolver(sedml);
+				IModelResolver archiveResolver = new CombineEntryResolver(archiveIn);
+				resolver.add(archiveResolver);
+				//some models might be URLs or BioModels
+				resolver.add(new URLResourceRetriever());
+				resolver.add(new BioModelsModelsRetriever());
+				// this just gets the models
+				for (Model model: sedml.getModels()){
+					System.err.println(resolver.getModelString(model));
+				}
+				for (Output output: sedml.getOutputs()) {
+					// or we can simulate them:
+					SedMLSBMLSimulatorExecutor executor = new SedMLSBMLSimulatorExecutor(sedml, output);
+					// need to be able to add Combine archive model extractor here
+				}
+
+				
+				
 			}
 		}
 		archiveIn.close();
@@ -95,7 +121,7 @@ public class OmexTest {
 
 	// puts model files in  a specific location
 	private String getModelPathInArchive() {
-		return "models/"+REPRESSILATOR.getName();
+		return "/models/"+REPRESSILATOR.getName();
 	}
 
 }
